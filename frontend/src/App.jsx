@@ -1,13 +1,13 @@
 import Card from "./components/card";
-
+import links from "./pages.json";
 function App() {
+
 	return (
 		<div>
 			<div className='flex justify-center items-center h-screen space-x-4 bg-primary'>
-				<Card title='Budget Tracker' />
-				<Card title='Live Stock Exchange' />
-				<Card title='Financial Education' />
-				<Card title='Currency Converter' />
+				{links.map((x, i) => {
+					return <Card key={i} title={x.title} desc={x.desc} link={x.link} />;
+				})}
 			</div>
 		</div>
 	);

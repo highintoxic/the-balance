@@ -8,7 +8,7 @@ class Card extends Component {
 	render() {
 		return (
 			<a
-				href='#'
+				href={this.props.link ? this.props.link : "#"}
 				className='btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-md border border-stone-300 bg-secondary hover:bg-gradient-to-t hover:from-secondary before:to-txt hover:-translate-y-[5px]'
 			>
 				<div className='flex items-center justify-center space '>
@@ -33,6 +33,7 @@ class Card extends Component {
 Card.propTypes = {
 	title: PropTypes.string.isRequired,
 	desc: PropTypes.string,
+	link: PropTypes.link
 };
 
 export default Card;
