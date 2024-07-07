@@ -9,12 +9,12 @@ class Card extends Component {
 		return (
 			<a
 				href={this.props.link ? this.props.link : "#"}
-				className='btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-md border border-stone-300 bg-secondary hover:bg-gradient-to-t hover:from-secondary before:to-txt hover:-translate-y-[5px]'
+				className='shadow-md btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-lg  bg-secondary hover:bg-gradient-to-t hover:from-secondary before:to-txt hover:-translate-y-[10px]'
 			>
 				<div className='flex items-center justify-center space '>
 					<div className='w-full max-w-lg px-10 py-8 mx-auto rounded-lg shadow-xl '>
 						<div className='max-w-md mx-auto space-y-6'>
-							<h2 className='text-2xl font-bold text-primary'>
+							<h2 className='text-2xl font-bold text-txt'>
 								{this.props.title}
 							</h2>
 							<div className='text-base'>
