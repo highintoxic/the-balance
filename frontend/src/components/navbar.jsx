@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class NavBar extends Component {
 	render() {
@@ -31,7 +32,9 @@ export default class NavBar extends Component {
 							/>
 						</div>
 						<ul className='flex items-center space-x-6'>
-							<li className='font-semibold text-gray-700'>Home</li>
+							<li className='font-semibold text-gray-700'>
+								<Link to="/">Home</Link>
+							</li>
 							<li className='font-semibold text-gray-700'>Articles</li>
 							<li>
 								<svg

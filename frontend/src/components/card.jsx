@@ -1,5 +1,6 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const dummyText =
 	"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt aperiam quae minima facilis quos accusamus harum ipsa aliquam doloribus repellat. Libero placeat doloribus minus inventore voluptates minima ad quod quisquam.";
@@ -7,8 +8,8 @@ const dummyText =
 class Card extends Component {
 	render() {
 		return (
-			<a
-				href={this.props.link ? this.props.link : "#"}
+			<Link
+				to={this.props.link ? this.props.link : "#"}
 				className='shadow-md btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-lg  bg-secondary hover:bg-gradient-to-t hover:from-secondary before:to-txt hover:-translate-y-[10px]'
 			>
 				<div className='flex items-center justify-center space '>
@@ -25,7 +26,7 @@ class Card extends Component {
 						</div>
 					</div>
 				</div>
-			</a>
+			</Link>
 		);
 	}
 }
