@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import scrollbar from "tailwind-scrollbar";
+import autoprefixer from "autoprefixer";
 export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
@@ -13,5 +14,5 @@ export default {
 			}
 		},
 	},
-	plugins: [scrollbar],
+	plugins: [scrollbar, autoprefixer],
 };
