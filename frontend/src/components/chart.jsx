@@ -50,7 +50,7 @@ class Chart extends Component {
 		return data.c.map((item, index) => {
 			return {
 				value: item.toFixed(2),
-				date: convertUnixTimestampToDate(data.t[index]),
+				date: convertUnixTimestampToDate(this.state.filter, data.t[index]),
 			};
 		});
 	};
@@ -105,7 +105,7 @@ class Chart extends Component {
 					))}
 				</ul>
 				<ResponsiveContainer>
-					<AreaChart data={data}>
+					<AreaChart data={data} className="pt-[32px]">
 						<defs>
 							<linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
 								<stop

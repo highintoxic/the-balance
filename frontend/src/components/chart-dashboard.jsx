@@ -2,13 +2,11 @@ import { Component } from "react";
 import Overview from "./overview";
 import Details from "./details";
 import Chart from "./chart";
-import Header from "./header";
 import StockContext from "../context/StockContext";
 import { fetchStockDetails, fetchQuote } from "../api/stock-api";
+import Search from "./search";
 
 class Dashboard extends Component {
-
-
 	static contextType = StockContext;
 
 	constructor(props) {
@@ -16,12 +14,12 @@ class Dashboard extends Component {
 		this.state = {
 			stockDetails: {},
 			quote: {},
-			stockSymbol: ""
+			stockSymbol: "",
 		};
 	}
 
 	componentDidMount() {
-		this.setState({stockSymbol: this.context.stockSymbol})
+		this.setState({ stockSymbol: this.context.stockSymbol });
 		this.updateStockDetails();
 		this.updateStockOverview();
 	}
@@ -54,21 +52,16 @@ class Dashboard extends Component {
 	};
 
 	render() {
-
 		const { stockSymbol } = this.context;
 		const { stockDetails, quote } = this.state;
 
 		return (
-			<div
-				className={`h-screen grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-8 md:grid-rows-7 xl:grid-rows-5 auto-rows-fr gap-6 p-10 font-quicksand ${
-					"bg-neutral-100"
-				}`}
-			>
-				<div className='col-span-1 md:col-span-2 xl:col-span-3 row-span-1 flex justify-start items-center'>
-					<Header name={stockDetails.name} />
-				</div>
-				<div className='md:col-span-2 row-span-4'>
+			<div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-8 md:grid-rows-7 xl:grid-rows-5 auto-rows-fr gap-6 px-10 pt-5 font-quicksand bg-neutral-100'>
+				<div className='md:col-span-2 row-span-5'>
 					<Chart />
+				</div>
+				<div className="flex justify-center items-center">
+					<Search />
 				</div>
 				<div>
 					<Overview
