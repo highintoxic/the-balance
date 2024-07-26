@@ -3,6 +3,7 @@ import NavBar from './components/navbar';
 import { Route, Routes } from 'react-router-dom';
 import Budget from './pages/budget-calculator';
 import CurrencyConverter from './pages/currency-converter';
+import StockChart from './pages/stock-chart';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 				<Route path='/' element={<Home/>}></Route>
 				<Route path='/budget-tracker' element={<Budget/>}></Route>
 				<Route path="/currency-converter" element={<CurrencyConverter/>}></Route>
+				<Route path='/stock-chart' element={<StockChart/>}/>
 			</Routes>
 		</div>
 	);
