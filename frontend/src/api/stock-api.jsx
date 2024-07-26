@@ -2,7 +2,6 @@ import axios from "axios";
 import { formateDate } from "../helpers/data-helper";
 const basePath = "https://finnhub.io/api/v1";
 
-
 export const searchSymbol = async (query) => {
 	const url = `${basePath}/search?q=${query}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
 	const response = await fetch(url);
@@ -57,7 +56,7 @@ export const fetchHistoricalData = async (
 			: "TIME_SERIES_MONTHLY";
 	let series =
 		resolution === "1D"
-			? "Time Series (5min)"
+			? "Time Series (30min)"
 			: resolution === "1W"
 			? "Time Series (Daily)"
 			: resolution === "1M"
@@ -68,11 +67,10 @@ export const fetchHistoricalData = async (
 	);
     url.searchParams.append("function", func)
     url.searchParams.append("symbol", stockSymbol)
-    if(resolution === "1D") url.searchParams.append("interval", "5min")
+    if(resolution === "1D") url.searchParams.append("interval", "30min")
     url.searchParams.append("apikey", "1F10ONCR6UBXNF7W");
 	const { data } = await axios.get(url);
-	const response = data;
-	console.log(response, series);
+	const response = data
 	let resObj = {
 		c: [],
 		t: [],

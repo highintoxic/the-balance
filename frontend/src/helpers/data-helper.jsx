@@ -2,9 +2,25 @@ export const convertDateToUnixTimestamp = (date) => {
 	return Math.floor(date.getTime() / 1000);
 };
 
-export const convertUnixTimestampToDate = (unixTimestamp) => {
+export const convertUnixTimestampToDate = (filter, unixTimestamp) => {
+	const weekday = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	];
 	const milliseconds = unixTimestamp * 1000;
-	return new Date(milliseconds).toLocaleDateString();
+	if (filter === "") {
+		return new Date(milliseconds).getMinutes();
+	} else if (filter === "1W") {
+		return weekday[new Date(milliseconds).getDay()];
+	} else if (filter === "1M") {
+		return new Date(milliseconds).toLocaleDateString();
+	} else
+		return new Date(milliseconds).toLocaleDateString().slice(3);
 };
 export const createDate = (date, days, weeks, months, years) => {
 	let newDate = new Date(date);

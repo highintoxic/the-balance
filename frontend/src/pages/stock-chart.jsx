@@ -8,7 +8,7 @@ export default function StockChart() {
 
 	return (
 		<StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
-			<div className="">
+			<div className="mt-20">
 				<Dashboard />
 			</div>
 		</StockContext.Provider>
