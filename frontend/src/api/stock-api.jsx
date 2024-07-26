@@ -68,7 +68,7 @@ export const fetchHistoricalData = async (
     url.searchParams.append("function", func)
     url.searchParams.append("symbol", stockSymbol)
     if(resolution === "1D") url.searchParams.append("interval", "30min")
-    url.searchParams.append("apikey", "1F10ONCR6UBXNF7W");
+    url.searchParams.append("apikey", "U5WDEQR8XQAY656K");
 
 	const { data } = await axios.get(url);
 	console.log(await axios.get(url));
