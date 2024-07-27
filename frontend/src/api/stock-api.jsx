@@ -70,7 +70,7 @@ export const fetchHistoricalData = async (
     if(resolution === "1D") url.searchParams.append("interval", "30min")
     url.searchParams.append("apikey", import.meta.env.VITE_STOCK_KEY);
 	let r = await axios.get(url)
-	if(import.meta.env.VITE_MOCK === "true" || r === undefined) {
+	if(import.meta.env.VITE_MOCK === "true" || r.data["Meta Data"] === undefined) {
 		r = mockData
 	}
 	console.log(r)
