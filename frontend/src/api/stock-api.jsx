@@ -1,9 +1,10 @@
 import axios from "axios";
 import { formateDate } from "../helpers/data-helper";
 const basePath = "https://finnhub.io/api/v1";
+const finnKey = import.meta.VITE_FINN_KEY
 
 export const searchSymbol = async (query) => {
-	const url = `${basePath}/search?q=${query}&token=${import.meta.VITE_FINN_API}`;
+	const url = `${basePath}/search?q=${query}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -16,7 +17,7 @@ export const searchSymbol = async (query) => {
 
 
 export const fetchStockDetails = async (stockSymbol) => {
-	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${import.meta.VITE_FINN_API}`;
+	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -29,7 +30,7 @@ export const fetchStockDetails = async (stockSymbol) => {
 
 
 export const fetchQuote = async (stockSymbol) => {
-	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${import.meta.VITE_FINN_API}`;
+	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
