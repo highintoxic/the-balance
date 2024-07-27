@@ -1,4 +1,4 @@
-import links from "../pages.json";
+import links from "./pages.json";
 import Card from "../components/card";
 export default function Home() {
 	return (

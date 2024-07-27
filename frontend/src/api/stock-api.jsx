@@ -1,9 +1,9 @@
 import axios from "axios";
-import { formateDate } from "../helpers/data-helper";
 const basePath = "https://finnhub.io/api/v1";
-
+const finnKey = import.meta.env.VITE_FINN_API
+import mockData from "../constants/mock-stock-data.json"
 export const searchSymbol = async (query) => {
-	const url = `${basePath}/search?q=${query}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `${basePath}/search?q=${query}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -12,11 +12,11 @@ export const searchSymbol = async (query) => {
 	}
 
 	return await response.json();
-};
+};	
 
 
 export const fetchStockDetails = async (stockSymbol) => {
-	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -29,7 +29,7 @@ export const fetchStockDetails = async (stockSymbol) => {
 
 
 export const fetchQuote = async (stockSymbol) => {
-	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${finnKey}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -68,9 +68,13 @@ export const fetchHistoricalData = async (
     url.searchParams.append("function", func)
     url.searchParams.append("symbol", stockSymbol)
     if(resolution === "1D") url.searchParams.append("interval", "30min")
-    url.searchParams.append("apikey", "1F10ONCR6UBXNF7W");
-	const { data } = await axios.get(url);
-	const response = data
+    url.searchParams.append("apikey", import.meta.env.VITE_STOCK_KEY);
+	let r = await axios.get(url)
+	if(import.meta.env.VITE_MOCK === "true" || r.data["Meta Data"] === undefined) {
+		r = mockData
+	}
+	console.log(r)
+	const response = r.data
 	let resObj = {
 		c: [],
 		t: [],
@@ -84,7 +88,6 @@ export const fetchHistoricalData = async (
 		resObj.t.push(Date.parse(x) / 1000);
 		resObj.c.push(parseInt(desc[x].value["4. close"]));
 	}
-	console.log(resObj, formateDate(from * 1000), formateDate(to * 1000));
 
 	return resObj;
 };
