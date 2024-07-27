@@ -1,7 +1,7 @@
 import axios from "axios";
 const basePath = "https://finnhub.io/api/v1";
 const finnKey = import.meta.env.VITE_FINN_API
-
+import mockData from "../constants/mock-stock-data.json"
 export const searchSymbol = async (query) => {
 	const url = `${basePath}/search?q=${query}&token=${finnKey}`;
 	const response = await fetch(url);
@@ -69,8 +69,10 @@ export const fetchHistoricalData = async (
     url.searchParams.append("symbol", stockSymbol)
     if(resolution === "1D") url.searchParams.append("interval", "30min")
     url.searchParams.append("apikey", import.meta.env.VITE_STOCK_KEY);
-
-	const r = await axios.get(url)
+	let r = await axios.get(url)
+	if(import.meta.env.VITE_MOCK === "true" || r === undefined) {
+		r = mockData
+	}
 	console.log(r)
 	const response = r.data
 	let resObj = {
