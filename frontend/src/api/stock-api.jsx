@@ -1,7 +1,6 @@
 import axios from "axios";
-import { formateDate } from "../helpers/data-helper";
 const basePath = "https://finnhub.io/api/v1";
-const finnKey = import.meta.VITE_FINN_KEY
+const finnKey = import.meta.env.VITE_FINN_API
 
 export const searchSymbol = async (query) => {
 	const url = `${basePath}/search?q=${query}&token=${finnKey}`;
@@ -69,10 +68,9 @@ export const fetchHistoricalData = async (
     url.searchParams.append("function", func)
     url.searchParams.append("symbol", stockSymbol)
     if(resolution === "1D") url.searchParams.append("interval", "30min")
-    url.searchParams.append("apikey", import.meta.VITE_STOCK);
+    url.searchParams.append("apikey", import.meta.env.VITE_STOCK);
 
 	const { data } = await axios.get(url);
-	console.log(await axios.get(url));
 	const response = data
 	let resObj = {
 		c: [],
@@ -87,7 +85,6 @@ export const fetchHistoricalData = async (
 		resObj.t.push(Date.parse(x) / 1000);
 		resObj.c.push(parseInt(desc[x].value["4. close"]));
 	}
-	console.log(resObj, formateDate(from * 1000), formateDate(to * 1000));
 
 	return resObj;
 };
