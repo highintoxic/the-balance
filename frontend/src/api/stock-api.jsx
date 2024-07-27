@@ -69,12 +69,9 @@ export const fetchHistoricalData = async (
     url.searchParams.append("symbol", stockSymbol)
     if(resolution === "1D") url.searchParams.append("interval", "30min")
     url.searchParams.append("apikey", import.meta.env.VITE_STOCK_KEY);
-	let r;
-	try{
-		r = await axios.get(url)
-	} catch(err) {
-		console.log(err)
-	}
+
+	const r = await axios.get(url)
+	console.log(r)
 	const response = r.data
 	let resObj = {
 		c: [],
