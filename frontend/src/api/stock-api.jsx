@@ -3,7 +3,7 @@ import { formateDate } from "../helpers/data-helper";
 const basePath = "https://finnhub.io/api/v1";
 
 export const searchSymbol = async (query) => {
-	const url = `${basePath}/search?q=${query}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `${basePath}/search?q=${query}&token=${import.meta.VITE_FINN_API}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -12,11 +12,11 @@ export const searchSymbol = async (query) => {
 	}
 
 	return await response.json();
-};
+};	
 
 
 export const fetchStockDetails = async (stockSymbol) => {
-	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${import.meta.VITE_FINN_API}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
@@ -29,7 +29,7 @@ export const fetchStockDetails = async (stockSymbol) => {
 
 
 export const fetchQuote = async (stockSymbol) => {
-	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=cq7picpr01qormuindp0cq7picpr01qormuindpg`;
+	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${import.meta.VITE_FINN_API}`;
 	const response = await fetch(url);
 
 	if (!response.ok) {
