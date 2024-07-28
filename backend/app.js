@@ -3,12 +3,13 @@ const cors = require("cors");
 const routes = require("./routes/index");
 const ErrorHandler = require("./middlewares/ErrorHandler");
 const app = express();
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
 app.use('/api', routes);
 app.get("/", (req, res) => {
-    res.send("<h1>Hello World!</h1>");
+    res.sendFile(path.join(__dirname, "./views/index.html"))
 });
 
 app.use(ErrorHandler)
