@@ -5,7 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build:digitalocean": "npm install --include=dev && npm run build && npm ci"
   },
   "author": "",
   "license": "ISC",
