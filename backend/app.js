@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', routes);
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("<h1>Hello World!</h1>");
 });
 
 app.use(ErrorHandler)
