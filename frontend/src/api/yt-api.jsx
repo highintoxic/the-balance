@@ -9,7 +9,7 @@ import axios from "axios";
 export const YTDetails = async (query) => {
     const response = await axios({
 			method: "post",
-			url: `http://${import.meta.env.VITE_API_BASE}/api/yt-details/`,
+			url: `${import.meta.env.VITE_API_BASE}/api/yt-details/`,
 			data: {
 				link: query,
 			},
