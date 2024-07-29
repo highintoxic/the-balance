@@ -18,7 +18,6 @@ router.post("/", async (req, res, next) => {
             videoThumb: items[0].thumbnails[0].url,
         });
         res.status(200);
-        console.log("Kek")
     } catch(err) {
         next(err)
     }
