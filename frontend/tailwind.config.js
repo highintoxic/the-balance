@@ -6,12 +6,12 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: "#FFFFF0",
-				secondary: "#FFF8DC",
+				primary: "gray-100",
+				secondary: "rgba(88,220,143,0.57)",
 				txt: "#000000",
 				pBg: "#3DC2EC",
 				blue: "#587ef4",
-			}
+			},
 		},
 	},
 	plugins: [scrollbar, autoprefixer],
