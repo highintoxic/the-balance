@@ -7,7 +7,7 @@ export default class NavBar extends Component {
 			<nav className='fixed top-0 z-10 w-full bg-secondary drop-shadow-lg'>
 				<div className='flex justify-between px-20 py-5 items-center'>
 					<Link to='/' className='text-xl text-gray-800 font-bold'>
-						HotCoffee
+						Fadu Finance
 					</Link>
 					<div className='flex items-center'>
 						<div className='flex items-center px-6'>
