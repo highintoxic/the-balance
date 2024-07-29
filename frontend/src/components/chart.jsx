@@ -110,12 +110,12 @@ class Chart extends Component {
 							<linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
 								<stop
 									offset='5%'
-									stopColor={"rgb(199 210 254)"}
+									stopColor={"white"}
 									stopOpacity={0.8}
 								/>
 								<stop
 									offset='95%'
-									stopColor={"rgb(199 210 254)"}
+									stopColor={"white"}
 									stopOpacity={0}
 								/>
 							</linearGradient>

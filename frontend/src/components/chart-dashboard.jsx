@@ -56,8 +56,8 @@ class Dashboard extends Component {
 		const { stockDetails, quote } = this.state;
 
 		return (
-			<div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-8 md:grid-rows-7 xl:grid-rows-5 auto-rows-fr gap-6 px-10 pt-5 font-quicksand bg-neutral-100'>
-				<div className='md:col-span-2 row-span-5'>
+			<div className=' grid grid-cols-3 gap-6 px-6'>
+				<div className='col-span-2 row-span-4'>
 					<Chart />
 				</div>
 				<div className="flex justify-center items-center">
@@ -72,7 +72,7 @@ class Dashboard extends Component {
 						currency={stockDetails.currency}
 					/>
 				</div>
-				<div className='row-span-2 xl:row-span-3'>
+				<div className=''>
 					<Details details={stockDetails} />
 				</div>
 			</div>
