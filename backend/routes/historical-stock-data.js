@@ -46,6 +46,10 @@ router.post("/", async (req, res, next) => {
 			if (resJson["Meta Data"] === undefined) resJson = pData;
 			else {
 				pData[series] = resJson[series];
+				let wd = {}
+				Object.defineProperty(wd, stocksymbol, {
+					value: pData
+				})
 				fs.writeFileSync(
 					path.join(process.cwd(), MOCK_DATA),
 					JSON.stringify(pData)
