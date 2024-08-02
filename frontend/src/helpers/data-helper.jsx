@@ -13,8 +13,8 @@ export const convertUnixTimestampToDate = (filter, unixTimestamp) => {
 		"Saturday",
 	];
 	const milliseconds = unixTimestamp * 1000;
-	if (filter === "") {
-		return new Date(milliseconds).getMinutes();
+	if (filter === "1D") {
+		return new Date(milliseconds).toLocaleTimeString();
 	} else if (filter === "1W") {
 		return weekday[new Date(milliseconds).getDay()];
 	} else if (filter === "1M") {

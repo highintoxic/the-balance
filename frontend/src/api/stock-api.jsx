@@ -1,40 +1,39 @@
 import axios from "axios";
-const basePath = "https://finnhub.io/api/v1";
-const finnKey = import.meta.env.VITE_FINN_API;
+
 export const searchSymbol = async (query) => {
-	const url = `${basePath}/search?q=${query}&token=${finnKey}`;
-	const response = await fetch(url);
+	const response = await axios({
+		method: "post",
+		url: `${import.meta.env.VITE_API_BASE}/api/search-symbol/`,
+		data: {
+			search: query,
+		}
+	})
 
-	if (!response.ok) {
-		const message = `An error has occured: ${response.status}`;
-		throw new Error(message);
-	}
-
-	return await response.json();
+	return response.data
 };
 
 export const fetchStockDetails = async (stockSymbol) => {
-	const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${finnKey}`;
-	const response = await fetch(url);
+	const response = await axios({
+		method: "post",
+		url: `${import.meta.env.VITE_API_BASE}/api/stock-details/`,
+		data: {
+			stocksymbol: stockSymbol,
+		},
+	})
 
-	if (!response.ok) {
-		const message = `An error has occured: ${response.status}`;
-		throw new Error(message);
-	}
-
-	return await response.json();
+	return response.data
 };
 
 export const fetchQuote = async (stockSymbol) => {
-	const url = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${finnKey}`;
-	const response = await fetch(url);
+	const response = await axios({
+		method: "post",
+		url: `${import.meta.env.VITE_API_BASE}/api/fetch-quote/`,
+		data: {
+			stocksymbol: stockSymbol,
+		},
+	})
 
-	if (!response.ok) {
-		const message = `An error has occured: ${response.status}`;
-		throw new Error(message);
-	}
-
-	return await response.json();
+	return response.data
 };
 
 export const fetchHistoricalData = async (

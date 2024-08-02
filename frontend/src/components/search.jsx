@@ -68,7 +68,7 @@ class Search extends Component {
 				)}
 				<button
 					onClick={this.updateBestMatches}
-					className='h-8 w-8 bg-indigo-600 rounded-md flex justify-center items-center m-1 p-2 transition duration-300 hover:ring-2 ring-indigo-400'
+					className='btn transition duration-300 hover:ring-2 ring-indigo-400 mx-4'
 				>
 					<MagnifyingGlassIcon className='h-4 w-4 fill-gray-100' />
 				</button>

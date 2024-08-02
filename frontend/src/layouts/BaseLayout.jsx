@@ -1,17 +1,17 @@
 import PropTypes from "prop-types";
-import NavBar from "../components/navbar";
-import ReactiveFinanceBackground from "../components/background";
+import NavBar from "../components/NEW/navigation";
+import Background from "../components/NEW/gradient";
+import { Suspense } from "react";
+import Loader from "../components/NEW/loader";
 
 export default function BaseLayout({ children }) {
 	return (
-		<div>
-			<ReactiveFinanceBackground>
-				<div>
-					<NavBar />
-				</div>
+		<Suspense fallback={<Loader/>}>
+			<NavBar />
+			<Background>
 				<div>{children}</div>
-			</ReactiveFinanceBackground>
-		</div>
+			</Background>
+		</Suspense>
 	);
 }
 

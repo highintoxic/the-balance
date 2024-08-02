@@ -10,7 +10,7 @@ class Card extends Component {
 		return (
 			<Link
 				to={this.props.link ? this.props.link : "#"}
-				className='shadow-md btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-lg  bg-[rgba(88,220,143,0.57)] hover:bg-gradient-to-t hover:from-[rgba(88,220,143,0.57)] before:to-txt hover:-translate-y-[10px]'
+				className='shadow-md btn-default overflow-hidden relative rounded-xl transition-all duration-100 -- hover:shadow-lg  bg-slate-700] hover:bg-gradient-to-t hover:from-[rgba(88,220,143,0.57)] before:to-txt hover:-translate-y-[10px]'
 			>
 				<div className='flex items-center justify-center space '>
 					<div className='w-full max-w-lg px-10 py-8 mx-auto rounded-lg shadow-xl '>

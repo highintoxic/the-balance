@@ -1,9 +1,14 @@
 import { Component } from "react";
 import Card from "./stock-card";
-
-import PropTypes from "prop-types"
+import StockContext from "../context/StockContext";
+import PropTypes from "prop-types";
 
 class Details extends Component {
+	static contextType = StockContext;
+
+	shouldComponentUpdate(nextProps) {
+		return this.props !== nextProps;
+	}
 
 	convertMillionToBillion = (number) => {
 		return (number / 1000).toFixed(2);
@@ -25,9 +30,7 @@ class Details extends Component {
 		return (
 			<Card>
 				<ul
-					className={`w-full h-full flex flex-col justify-between divide-y ${
-						"divide-gray-200"
-					}`}
+					className={`w-full h-full flex flex-col justify-between divide-y ${"divide-gray-200"}`}
 				>
 					{Object.keys(detailslist).map((item) => (
 						<li
@@ -50,7 +53,6 @@ class Details extends Component {
 
 export default Details;
 
-
 Details.propTypes = {
-    details: PropTypes.object
-}
+	details: PropTypes.object,
+};

@@ -1,6 +1,6 @@
-import { Component } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import ChartFilter from "./chartfilter";
-import Card from "./stock-card";
+import { motion } from "framer-motion";
 import {
 	Area,
 	XAxis,
@@ -19,57 +19,35 @@ import {
 } from "../helpers/data-helper";
 import { chartConfig } from "../constants/config";
 
-class Chart extends Component {
+const Chart = () => {
+	const [filter, setFilter] = useState("1W");
+	const [data, setData] = useState([]);
+	const { stockSymbol } = useContext(StockContext);
 
-	static contextType = StockContext
+	const formatData = useCallback(
+		(data) => {
+			return data.c.map((item, index) => {
+				return {
+					value: item.toFixed(2),
+					date: convertUnixTimestampToDate(filter, data.t[index]),
+				};
+			});
+		},
+		[filter]
+	);
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			filter: "1W",
-			data: [],
-			stockSymbol: ""
-		};
-	}
-
-	componentDidMount() {
-		this.setState({ stockSymbol: this.context.stockSymbol})
-		this.updateChartData();
-	}
-
-	componentDidUpdate(prevProps, prevState ) {
-		if (
-			prevState.filter !== this.state.filter ||
-			prevState.stockSymbol !== this.state.stockSymbol
-		) {
-			this.updateChartData();
-		}
-	}
-
-	formatData = (data) => {
-		return data.c.map((item, index) => {
-			return {
-				value: item.toFixed(2),
-				date: convertUnixTimestampToDate(this.state.filter, data.t[index]),
-			};
-		});
-	};
-
-	getDateRange = () => {
-		const { filter } = this.state;
+	const getDateRange = useCallback(() => {
 		const { days, weeks, months, years } = chartConfig[filter];
 		const endDate = new Date();
 		const startDate = createDate(endDate, -days, -weeks, -months, -years);
 		const startTimestampUnix = convertDateToUnixTimestamp(startDate);
 		const endTimestampUnix = convertDateToUnixTimestamp(endDate);
 		return { startTimestampUnix, endTimestampUnix };
-	};
+	}, [filter]);
 
-	updateChartData = async () => {
-		const { stockSymbol } = this.context;
-		const { filter } = this.state;
+	const updateChartData = useCallback(async () => {
 		try {
-			const { startTimestampUnix, endTimestampUnix } = this.getDateRange();
+			const { startTimestampUnix, endTimestampUnix } = getDateRange();
 			const resolution = filter;
 			const result = await fetchHistoricalData(
 				stockSymbol,
@@ -77,70 +55,91 @@ class Chart extends Component {
 				startTimestampUnix,
 				endTimestampUnix
 			);
-			this.setState({ data: this.formatData(result) });
+			setData(formatData(result));
 		} catch (error) {
-			this.setState({ data: [] });
+			setData([]);
 			console.error("Error fetching historical data:", error);
 		}
-	};
+	}, [filter, stockSymbol, getDateRange, formatData]);
 
-	setFilter = (filter) => {
-		this.setState({ filter });
-	};
+	useEffect(() => {
+		updateChartData();
+	}, [updateChartData]);
 
-	render() {
-		
-		const { data, filter } = this.state;
-		return (
-			<Card>
-				<ul className='flex absolute top-2 right-2 z-40'>
+
+	return (
+		<motion.div
+			initial={{ opacity: 0, y: 50 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}
+			className='w-full rounded-xl relative p-8 bg-gray-900 text-white shadow-md over'
+		>
+			<div className='flex justify-between items-center mb-4'>
+				<h2 className='text-xl font-bold text-white'>Chart</h2>
+				<motion.ul className='flex'>
 					{Object.keys(chartConfig).map((item) => (
-						<li key={item}>
+						<motion.li
+							key={item}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							className='mx-1'
+						>
 							<ChartFilter
 								text={item}
 								active={filter === item}
-								onClick={() => this.setFilter(item)}
+								onClick={() => setFilter(item)}
 							/>
-						</li>
+						</motion.li>
 					))}
-				</ul>
-				<ResponsiveContainer>
-					<AreaChart data={data} className="pt-[32px]">
+				</motion.ul>
+			</div>
+			<motion.div
+				initial={{ opacity: 0, scale: 0.9 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 0.5 }}
+				className='h-full'
+			>
+				<ResponsiveContainer width='100%' height={400}>
+					<AreaChart data={data}>
 						<defs>
 							<linearGradient id='chartColor' x1='0' y1='0' x2='0' y2='1'>
 								<stop
 									offset='5%'
-									stopColor={"white"}
+									stopColor='rgb(255, 255, 255)'
 									stopOpacity={0.8}
 								/>
 								<stop
 									offset='95%'
-									stopColor={"white"}
+									stopColor='rgb(99, 102, 241)'
 									stopOpacity={0}
 								/>
 							</linearGradient>
 						</defs>
 						<Tooltip
-							contentStyle={null}
-							itemStyle={null}
+							contentStyle={{
+								backgroundColor: "white",
+								borderRadius: "4px",
+								boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+								color: "#4f46e5",
+							}}
+							itemStyle={{ color: "#4f46e5" }}
 						/>
 						<Area
 							type='monotone'
 							dataKey='value'
-							stroke='#312e81'
+							stroke='#4f46e5'
 							fill='url(#chartColor)'
 							fillOpacity={1}
-							strokeWidth={0.5}
+							strokeWidth={2}
 						/>
 						<XAxis dataKey='date' />
 						<YAxis domain={["dataMin", "dataMax"]} />
 					</AreaChart>
 				</ResponsiveContainer>
-			</Card>
-		);
-	}
-}
-
-
+			</motion.div>
+		</motion.div>
+	);
+};
 
 export default Chart;
+ 

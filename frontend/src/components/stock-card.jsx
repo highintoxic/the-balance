@@ -4,7 +4,7 @@ class SCard extends Component {
 	render() {
 		const { children } = this.props;
 		return (
-			<div className={"w-full h-full rounded-xl relative p-8 bg-secondary text-txt shadow-md"}>
+			<div className="w-full h-full rounded-xl relative p-8 bg-gray-900 text-white shadow-md">
 				{children}
 			</div>
 		);
