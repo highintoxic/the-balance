@@ -59,7 +59,7 @@ class Search extends Component {
 					}`}
 					placeholder='Search stock...'
 					onChange={this.handleInputChange}
-					onKeyPress={this.handleKeyPress}
+					onKeyUp={this.handleKeyPress}
 				/>
 				{input && (
 					<button onClick={this.clear} className='m-1'>

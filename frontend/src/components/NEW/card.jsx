@@ -1,15 +1,15 @@
 import { useRef } from "react";
 import { useInView, motion } from "framer-motion";
 import PropTypes from "prop-types"
-import { useNavigate } from "react-router-dom";
+
 
 
 const Card = ({ title, description, icon, btnText, btnTo }) => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, amount: 0.5 });
-	const navigate = useNavigate();
 	const handleClick = () => {
-		navigate(btnTo)
+		console.log(btnTo)
+		window.location.href = btnTo;
 	}
 
 	return (
@@ -54,7 +54,7 @@ const Card = ({ title, description, icon, btnText, btnTo }) => {
 					initial={{ opacity: 0 }}
 					animate={isInView ? { opacity: 1 } : { opacity: 0 }}
 					transition={{ duration: 0.5, delay: 0.5 }}
-					onClick={handleClick}
+					onClick={() => handleClick()}
 				>
 					{btnText}
 					<svg

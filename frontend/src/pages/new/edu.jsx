@@ -20,7 +20,9 @@ export default function TutorialPage() {
 		<BaseLayout>
 			<div className='mt-20 flex flex-col justify-center items-center'>
 				{data.map((x, i) => {
+					
 					return (
+						
 						<div key={i} className='w-2/3 m-5 h-1/4 rounded-2xl shadow-md px-4'>
 							<Card
 								key={i}
@@ -28,8 +30,10 @@ export default function TutorialPage() {
 								title={x.videoTitle}
 								description={x.channelName}
 								btnText='Watch'
+								btnTo={x.videoLink}
 							/>
 						</div>
+					
 					);
 				})}
 			</div>
