@@ -89,7 +89,7 @@ const Features = () => {
 					/>
 				}
 				btnText='Explore'
-				btnTo='/stock-chart'
+				btnTo='/splitwise'
 			/>
 		</div>
 	);
