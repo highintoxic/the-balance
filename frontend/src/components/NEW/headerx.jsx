@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState} from "react";
 import { motion } from "framer-motion";
 import Lottie from "react-lottie";
 import anim from "../../lotties/Animation - 1722336488846.json";
@@ -25,7 +25,7 @@ const Header = ({toScroll}) => {
 						className='relative w-fit h-fit grow font-semibold text-7xl tracking-wide text-gray-900 mb-4'
 						{...fadeInUp}
 					>
-						The Balance
+						Finway
 					</motion.h1>
 					<motion.div
 						className='relative w-72 mb-4'
