@@ -1,8 +1,6 @@
-import links from "./pages.json";
-import Card from "../components/card";
+
 import BaseLayout from "../layouts/BaseLayout";
 import Header from "../components/NEW/headerx";
-import Navbar from "../components/NEW/navigation";
 import Features from "../components/NEW/features";
 import Footer from "../components/NEW/footer";
 import Pivot from "../components/NEW/pivot";
