@@ -1,5 +1,4 @@
-import Lottie from "react-lottie";
-import anim from "../../lotties/balance.json";
+import logo from "../../assets/logo.png"
 import { Link } from "react-router-dom";
 const Navbar = () => {
 	return (
@@ -9,9 +8,7 @@ const Navbar = () => {
 					
 					<span className='h-[2em]'>
 						<Link to='/'>
-							<Lottie
-								options={{ loop: false, autoplay: true, animationData: anim }}
-							/>
+							<img src={logo} className="h-full" />
 						</Link>
 					</span>
 

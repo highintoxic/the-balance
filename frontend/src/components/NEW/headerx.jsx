@@ -2,6 +2,7 @@ import { useEffect, useState} from "react";
 import { motion } from "framer-motion";
 import Lottie from "react-lottie";
 import anim from "../../lotties/Animation - 1722336488846.json";
+import fullLogo from "../../assets/full-logo.png"
 import propTypes from "prop-types"
 const fadeInUp = {
 	initial: { opacity: 0, y: 20 },
@@ -25,7 +26,7 @@ const Header = ({toScroll}) => {
 						className='relative w-fit h-fit grow font-semibold text-7xl tracking-wide text-gray-900 mb-4'
 						{...fadeInUp}
 					>
-						Finway
+						<img src={fullLogo} className="h-[1.45em]"/>
 					</motion.h1>
 					<motion.div
 						className='relative w-72 mb-4'
