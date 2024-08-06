@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "axios": "^1.7.2",
+    "firebase": "^10.12.5",
     "framer-motion": "^11.3.19",
     "grommet-icons": "^4.12.1",
     "react": "^18.3.1",
